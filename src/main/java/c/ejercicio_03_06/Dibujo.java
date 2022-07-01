@@ -38,11 +38,11 @@ public class Dibujo extends javax.swing.JPanel {
     public void paint(Graphics g) {
         super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         
-        //G.dibujarCirculo(g);
-        //G.dibujarRectangulo(g);
-        //G.dibujarCuadrado(g);
+        G.dibujarCirculo(g);
+        G.dibujarRectangulo(g);
+        G.dibujarCuadrado(g);
         G.dibujarEstrella(g);
-        //G.dibujarTriangulo(g);
+        G.dibujarTriangulo(g);
     }
     
     public void Actualizar(){

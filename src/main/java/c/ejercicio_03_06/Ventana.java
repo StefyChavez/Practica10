@@ -5,6 +5,7 @@
 package c.ejercicio_03_06;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,6 +47,11 @@ public class Ventana extends javax.swing.JFrame {
         jLabel1.setText("Figura:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Circulo", "Rectangulo", "Cuadrado", "Estrella", "Triangulo" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -125,17 +131,17 @@ public class Ventana extends javax.swing.JFrame {
                         .addGap(100, 100, 100)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(dibujo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dibujo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -172,38 +178,24 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        dibujo1.removeAll();
+        jComboBox1.getDebugGraphicsOptions();
+        this.jTextField1.setText(" ");
+        this.jTextField2.setText(" ");
+        dibujo1.Actualizar();
+        this.repaint();
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
         int tancho = Integer.parseInt(this.jTextField1.getText());
         int talto = Integer.parseInt(this.jTextField2.getText());
         
         dibujo1.enviarAnchoAlto(tancho, talto);
         dibujo1.Actualizar();
                 
-        switch (jComboBox1.getSelectedIndex()) {
-            case 1:
-                grafico.dibujarCirculo(dibujo1.getGraphics());
-                break;
-            case 2:
-                grafico.dibujarRectangulo(dibujo1.getGraphics());
-                break;
-            case 3:
-                grafico.dibujarCuadrado(dibujo1.getGraphics());
-                break;
-            case 4:                     
-                grafico.dibujarEstrella(dibujo1.getGraphics());
-                break;
-            case 5:
-                grafico.dibujarTriangulo(dibujo1.getGraphics());
-                break;
-            default:
-                break;
-        }
-        
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
      
@@ -215,20 +207,6 @@ public class Ventana extends javax.swing.JFrame {
         dibujo1.enviarCoordenadas(x, y);
         dibujo1.Actualizar();
         
-    }//GEN-LAST:event_dibujo1MouseClicked
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        /*
         String figura =(String)jComboBox1.getSelectedItem().toString();
         switch (figura) {
             case "Circulo":
@@ -248,8 +226,28 @@ public class Ventana extends javax.swing.JFrame {
                 break;
             default:
                 break;
-        }*/
+        }
+    }//GEN-LAST:event_dibujo1MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here: 
+        JOptionPane.showMessageDialog(null, "Ítem seleccionado: "+jComboBox1.getSelectedItem());
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
